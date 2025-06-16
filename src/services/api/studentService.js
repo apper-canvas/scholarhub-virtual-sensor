@@ -108,8 +108,13 @@ class StudentService {
     }
   }
 
-  async update(id, updates) {
+async update(id, updates) {
     try {
+      // If ID is 0 or falsy, this is a new record - use create method instead
+      if (!id || parseInt(id) === 0) {
+        return await this.create(updates);
+      }
+      
       const client = this.getApperClient();
       const params = {
         records: [{
