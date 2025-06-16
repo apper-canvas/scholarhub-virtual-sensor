@@ -108,8 +108,8 @@ const getClassName = (classId) => {
 const handleEdit = (grade) => {
     setSelectedGrade(grade);
     setFormData({
-      studentId: grade.studentId || grade.student_id,
-      classId: grade.classId || grade.class_id,
+      studentId: grade.student_id,
+      classId: grade.class_id,
       score: grade.score.toString(),
       maxScore: grade.max_score,
       type: grade.type,
@@ -118,7 +118,7 @@ const handleEdit = (grade) => {
     setShowModal(true);
   };
 
-  const handleDelete = async (grade) => {
+const handleDelete = async (grade) => {
 const studentName = getStudentName(grade.student_id);
     const className = getClassName(grade.class_id);
     
@@ -152,16 +152,15 @@ const studentName = getStudentName(grade.student_id);
     if (!validateForm()) return;
 
     setSubmitting(true);
-    try {
+try {
 const gradeData = {
-        studentId: formData.studentId,
-        classId: formData.classId,
+        student_id: formData.studentId,
+        class_id: formData.classId,
         score: parseFloat(formData.score),
         maxScore: parseInt(formData.maxScore),
         type: formData.type,
         comments: formData.comments
       };
-
       let result;
       if (selectedGrade) {
         result = await gradeService.update(selectedGrade.id, gradeData);
