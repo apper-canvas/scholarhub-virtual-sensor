@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "studentId": "1",
+    "classId": "1",
+    "date": "2024-01-15",
+    "status": "Present",
+    "reason": ""
+  },
+  {
+    "id": "2",
+    "studentId": "2",
+    "classId": "1",
+    "date": "2024-01-15",
+    "status": "Present",
+    "reason": ""
+  },
+  {
+    "id": "3",
+    "studentId": "3",
+    "classId": "4",
+    "date": "2024-01-15",
+    "status": "Absent",
+    "reason": "Sick"
+  },
+  {
+    "id": "4",
+    "studentId": "4",
+    "classId": "1",
+    "date": "2024-01-15",
+    "status": "Late",
+    "reason": "Bus delay"
+  },
+  {
+    "id": "5",
+    "studentId": "5",
+    "classId": "2",
+    "date": "2024-01-15",
+    "status": "Present",
+    "reason": ""
+  }
+]

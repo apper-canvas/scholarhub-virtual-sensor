@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "firstName": "Sarah",
+    "lastName": "Mitchell",
+    "email": "s.mitchell@school.edu",
+    "subjects": ["Mathematics", "Algebra"],
+    "phone": "(555) 111-2233"
+  },
+  {
+    "id": "2",
+    "firstName": "David",
+    "lastName": "Parker",
+    "email": "d.parker@school.edu",
+    "subjects": ["English", "Literature"],
+    "phone": "(555) 222-3344"
+  },
+  {
+    "id": "3",
+    "firstName": "Maria",
+    "lastName": "Santos",
+    "email": "m.santos@school.edu",
+    "subjects": ["Biology", "Chemistry"],
+    "phone": "(555) 333-4455"
+  },
+  {
+    "id": "4",
+    "firstName": "Robert",
+    "lastName": "Anderson",
+    "email": "r.anderson@school.edu",
+    "subjects": ["History", "Social Studies"],
+    "phone": "(555) 444-5566"
+  },
+  {
+    "id": "5",
+    "firstName": "Jennifer",
+    "lastName": "Lee",
+    "email": "j.lee@school.edu",
+    "subjects": ["Physical Education"],
+    "phone": "(555) 555-6677"
+  }
+]

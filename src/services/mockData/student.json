@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "firstName": "Emma",
+    "lastName": "Johnson",
+    "dateOfBirth": "2010-05-15",
+    "grade": "8th Grade",
+    "enrollmentDate": "2023-08-28",
+    "contactEmail": "parent.johnson@email.com",
+    "contactPhone": "(555) 123-4567",
+    "address": "123 Oak Street, Springfield, IL 62701",
+    "status": "Active"
+  },
+  {
+    "id": "2",
+    "firstName": "Michael",
+    "lastName": "Chen",
+    "dateOfBirth": "2009-12-03",
+    "grade": "9th Grade",
+    "enrollmentDate": "2023-08-28",
+    "contactEmail": "chen.family@email.com",
+    "contactPhone": "(555) 234-5678",
+    "address": "456 Maple Avenue, Springfield, IL 62702",
+    "status": "Active"
+  },
+  {
+    "id": "3",
+    "firstName": "Sophia",
+    "lastName": "Rodriguez",
+    "dateOfBirth": "2011-03-22",
+    "grade": "7th Grade",
+    "enrollmentDate": "2023-08-28",
+    "contactEmail": "rodriguez.home@email.com",
+    "contactPhone": "(555) 345-6789",
+    "address": "789 Pine Road, Springfield, IL 62703",
+    "status": "Active"
+  },
+  {
+    "id": "4",
+    "firstName": "James",
+    "lastName": "Wilson",
+    "dateOfBirth": "2010-09-18",
+    "grade": "8th Grade",
+    "enrollmentDate": "2023-08-28",
+    "contactEmail": "wilson.parents@email.com",
+    "contactPhone": "(555) 456-7890",
+    "address": "321 Elm Drive, Springfield, IL 62704",
+    "status": "Active"
+  },
+  {
+    "id": "5",
+    "firstName": "Ava",
+    "lastName": "Thompson",
+    "dateOfBirth": "2009-07-11",
+    "grade": "9th Grade",
+    "enrollmentDate": "2023-08-28",
+    "contactEmail": "thompson.family@email.com",
+    "contactPhone": "(555) 567-8901",
+    "address": "654 Cedar Lane, Springfield, IL 62705",
+    "status": "Active"
+  }
+]

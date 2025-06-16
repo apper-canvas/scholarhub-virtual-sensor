@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "name": "Algebra I",
+    "subject": "Mathematics",
+    "teacherId": "1",
+    "grade": "8th Grade",
+    "schedule": "Mon, Wed, Fri 9:00-9:50 AM",
+    "room": "Room 201",
+    "capacity": 25,
+    "enrolledCount": 22
+  },
+  {
+    "id": "2",
+    "name": "English Literature",
+    "subject": "English",
+    "teacherId": "2",
+    "grade": "9th Grade",
+    "schedule": "Tue, Thu 10:00-10:50 AM",
+    "room": "Room 105",
+    "capacity": 28,
+    "enrolledCount": 24
+  },
+  {
+    "id": "3",
+    "name": "Biology Fundamentals",
+    "subject": "Science",
+    "teacherId": "3",
+    "grade": "9th Grade",
+    "schedule": "Mon, Wed, Fri 11:00-11:50 AM",
+    "room": "Lab 301",
+    "capacity": 20,
+    "enrolledCount": 18
+  },
+  {
+    "id": "4",
+    "name": "World History",
+    "subject": "Social Studies",
+    "teacherId": "4",
+    "grade": "8th Grade",
+    "schedule": "Tue, Thu 1:00-1:50 PM",
+    "room": "Room 208",
+    "capacity": 30,
+    "enrolledCount": 26
+  },
+  {
+    "id": "5",
+    "name": "Physical Education",
+    "subject": "Physical Education",
+    "teacherId": "5",
+    "grade": "7th Grade",
+    "schedule": "Daily 2:00-2:50 PM",
+    "room": "Gymnasium",
+    "capacity": 35,
+    "enrolledCount": 32
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "studentId": "1",
+    "classId": "1",
+    "score": 87,
+    "maxScore": 100,
+    "type": "Test",
+    "date": "2024-01-15",
+    "comments": "Good understanding of quadratic equations"
+  },
+  {
+    "id": "2",
+    "studentId": "1",
+    "classId": "1",
+    "score": 92,
+    "maxScore": 100,
+    "type": "Homework",
+    "date": "2024-01-10",
+    "comments": "Excellent work on practice problems"
+  },
+  {
+    "id": "3",
+    "studentId": "2",
+    "classId": "2",
+    "score": 95,
+    "maxScore": 100,
+    "type": "Essay",
+    "date": "2024-01-12",
+    "comments": "Outstanding analysis of character development"
+  },
+  {
+    "id": "4",
+    "studentId": "3",
+    "classId": "4",
+    "score": 83,
+    "maxScore": 100,
+    "type": "Quiz",
+    "date": "2024-01-14",
+    "comments": "Good grasp of historical timeline"
+  },
+  {
+    "id": "5",
+    "studentId": "4",
+    "classId": "1",
+    "score": 78,
+    "maxScore": 100,
+    "type": "Test",
+    "date": "2024-01-15",
+    "comments": "Needs more practice with word problems"
+  }
+]
