@@ -108,8 +108,8 @@ const getClassName = (classId) => {
 const handleEdit = (grade) => {
     setSelectedGrade(grade);
     setFormData({
-      studentId: grade.student_id,
-      classId: grade.class_id,
+      studentId: grade.studentId || grade.student_id,
+      classId: grade.classId || grade.class_id,
       score: grade.score.toString(),
       maxScore: grade.max_score,
       type: grade.type,
@@ -153,10 +153,13 @@ const studentName = getStudentName(grade.student_id);
 
     setSubmitting(true);
     try {
-      const gradeData = {
-        ...formData,
+const gradeData = {
+        studentId: formData.studentId,
+        classId: formData.classId,
         score: parseFloat(formData.score),
-        maxScore: parseInt(formData.maxScore)
+        maxScore: parseInt(formData.maxScore),
+        type: formData.type,
+        comments: formData.comments
       };
 
       let result;
@@ -202,19 +205,19 @@ const studentName = getStudentName(grade.student_id);
 const columns = [
     {
       header: 'Student',
-      accessor: 'student_id',
-      render: (studentId) => (
+      accessor: 'studentId',
+      render: (studentId, grade) => (
         <div className="font-medium text-surface-900">
-          {getStudentName(studentId)}
+          {getStudentName(studentId || grade.student_id)}
         </div>
       )
     },
     {
 header: 'Class',
-      accessor: 'class_id',
-      render: (classId) => (
+      accessor: 'classId',
+      render: (classId, grade) => (
         <div className="text-sm text-surface-700">
-          {getClassName(classId)}
+          {getClassName(classId || grade.class_id)}
         </div>
       )
     },
