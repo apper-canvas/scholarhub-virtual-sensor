@@ -3,7 +3,7 @@ import Students from '@/components/pages/Students';
 import Classes from '@/components/pages/Classes';
 import Grades from '@/components/pages/Grades';
 import Attendance from '@/components/pages/Attendance';
-
+import Timetable from '@/components/pages/Timetable';
 export const routes = {
   dashboard: {
     id: 'dashboard',
@@ -33,12 +33,19 @@ export const routes = {
     icon: 'ClipboardList',
     component: Grades
   },
-  attendance: {
+attendance: {
     id: 'attendance',
     label: 'Attendance',
     path: '/attendance',
     icon: 'Calendar',
     component: Attendance
+  },
+  timetable: {
+    id: 'timetable',
+    label: 'Timetable',
+    path: '/timetable',
+    icon: 'Clock',
+    component: Timetable
   }
 };
 
