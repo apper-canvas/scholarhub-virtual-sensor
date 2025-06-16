@@ -83,7 +83,6 @@ const Grades = () => {
     });
     setFilteredGrades(filtered);
   };
-
 const getStudentName = (studentId) => {
     const student = students.find(s => s.Id === parseInt(studentId));
     return student ? `${student.first_name} ${student.last_name}` : 'Unknown Student';
@@ -93,7 +92,6 @@ const getClassName = (classId) => {
     const classItem = classes.find(c => c.Id === parseInt(classId));
     return classItem ? classItem.Name : 'Unknown Class';
   };
-
   const calculatePercentage = (score, maxScore) => {
     return Math.round((score / maxScore) * 100);
   };
@@ -117,7 +115,6 @@ const handleEdit = (grade) => {
     });
     setShowModal(true);
   };
-
 const handleDelete = async (grade) => {
 const studentName = getStudentName(grade.student_id);
     const className = getClassName(grade.class_id);
@@ -125,10 +122,9 @@ const studentName = getStudentName(grade.student_id);
     if (!confirm(`Are you sure you want to delete the ${grade.type} grade for ${studentName} in ${className}?`)) {
       return;
     }
-
-    try {
-      await gradeService.delete(grade.id);
-      setGrades(prev => prev.filter(g => g.id !== grade.id));
+try {
+      await gradeService.delete(grade.Id);
+      setGrades(prev => prev.filter(g => g.Id !== grade.Id));
       toast.success('Grade deleted successfully');
     } catch (error) {
       toast.error('Failed to delete grade');
@@ -327,8 +323,8 @@ render: (_, grade) => {
                 {students.map(student => (
                   <option key={student.Id} value={student.Id}>
                     {student.first_name} {student.last_name}
-                    </option>
-                  ))}
+                  </option>
+                ))}
                 </select>
                 {formErrors.studentId && <p className="text-sm text-error">{formErrors.studentId}</p>}
               </div>
@@ -351,8 +347,8 @@ render: (_, grade) => {
                 {classes.map(classItem => (
                   <option key={classItem.Id} value={classItem.Id}>
                     {classItem.Name}
-                    </option>
-                  ))}
+                  </option>
+                ))}
                 </select>
                 {formErrors.classId && <p className="text-sm text-error">{formErrors.classId}</p>}
               </div>

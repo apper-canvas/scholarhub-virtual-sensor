@@ -39,10 +39,10 @@ const Attendance = () => {
         classService.getAll()
       ]);
       setAttendance(attendanceResult);
-      setStudents(studentsResult);
+setStudents(studentsResult);
       setClasses(classesResult);
       if (classesResult.length > 0 && !selectedClass) {
-        setSelectedClass(classesResult[0].id);
+        setSelectedClass(classesResult[0].Id);
       }
     } catch (err) {
       setError(err.message || 'Failed to load attendance data');
@@ -150,11 +150,10 @@ const existingIndex = prev.findIndex(
     }, { present: 0, absent: 0, late: 0, notMarked: 0 });
 
     return stats;
-  };
+};
 
-  const selectedClassName = classes.find(c => c.id === selectedClass)?.name || '';
+  const selectedClassName = classes.find(c => c.Id === parseInt(selectedClass))?.Name || '';
   const stats = calculateAttendanceStats();
-
   if (loading) {
     return (
       <div className="space-y-6">
@@ -223,10 +222,10 @@ const existingIndex = prev.findIndex(
             value={selectedClass}
             onChange={(e) => setSelectedClass(e.target.value)}
             className="w-full px-3 py-2 border border-surface-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-          >
+>
             {classes.map(classItem => (
-              <option key={classItem.id} value={classItem.id}>
-                {classItem.name}
+              <option key={classItem.Id} value={classItem.Id}>
+                {classItem.Name}
               </option>
             ))}
           </select>

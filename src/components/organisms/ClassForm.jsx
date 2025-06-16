@@ -56,9 +56,9 @@ const validateForm = () => {
 
     setLoading(true);
     try {
-      let result;
+let result;
       if (classItem) {
-        result = await classService.update(classItem.id, formData);
+        result = await classService.update(classItem.Id, formData);
         toast.success('Class updated successfully');
       } else {
         result = await classService.create(formData);

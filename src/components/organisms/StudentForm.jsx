@@ -41,9 +41,9 @@ const [formData, setFormData] = useState({
 
     setLoading(true);
     try {
-      let result;
+let result;
       if (student) {
-        result = await studentService.update(student.id, formData);
+        result = await studentService.update(student.Id, formData);
         toast.success('Student updated successfully');
       } else {
         result = await studentService.create(formData);
