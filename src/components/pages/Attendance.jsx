@@ -60,24 +60,24 @@ const Attendance = () => {
 
     let filteredStudents = students;
     if (searchQuery.trim()) {
-      filteredStudents = students.filter(student =>
-        `${student.firstName} ${student.lastName}`.toLowerCase().includes(searchQuery.toLowerCase())
+filteredStudents = students.filter(student =>
+        `${student.first_name} ${student.last_name}`.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
     const grid = filteredStudents.map(student => {
-      const attendanceRecord = attendance.find(
+const attendanceRecord = attendance.find(
         record => 
-          record.studentId === student.id && 
-          record.classId === selectedClass && 
+          record.student_id === student.Id && 
+          record.class_id === parseInt(selectedClass) && 
           record.date === selectedDate
       );
       
       return {
         student,
         status: attendanceRecord?.status || 'Not Marked',
-        reason: attendanceRecord?.reason || '',
-        recordId: attendanceRecord?.id
+reason: attendanceRecord?.reason || '',
+        recordId: attendanceRecord?.Id
       };
     });
 
@@ -97,10 +97,10 @@ const Attendance = () => {
 
       // Update local state
       setAttendance(prev => {
-        const existingIndex = prev.findIndex(
+const existingIndex = prev.findIndex(
           record => 
-            record.studentId === studentId && 
-            record.classId === selectedClass && 
+            record.student_id === parseInt(studentId) && 
+            record.class_id === parseInt(selectedClass) && 
             record.date === selectedDate
         );
 
@@ -313,14 +313,14 @@ const Attendance = () => {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+<div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <span className="text-sm font-medium text-primary">
-                        {item.student.firstName[0]}{item.student.lastName[0]}
+                        {item.student.first_name[0]}{item.student.last_name[0]}
                       </span>
                     </div>
-                    <div>
+<div>
                       <p className="font-medium text-surface-900">
-                        {item.student.firstName} {item.student.lastName}
+                        {item.student.first_name} {item.student.last_name}
                       </p>
                       <p className="text-sm text-surface-500">{item.student.grade}</p>
                     </div>
@@ -344,21 +344,21 @@ const Attendance = () => {
                       <Button
                         size="small"
                         variant={item.status === 'Present' ? 'success' : 'outline'}
-                        onClick={() => handleStatusChange(item.student.id, 'Present')}
+onClick={() => handleStatusChange(item.student.Id, 'Present')}
                       >
                         <ApperIcon name="Check" size={14} />
                       </Button>
                       <Button
                         size="small"
                         variant={item.status === 'Late' ? 'warning' : 'outline'}
-                        onClick={() => handleStatusChange(item.student.id, 'Late')}
+onClick={() => handleStatusChange(item.student.Id, 'Late')}
                       >
                         <ApperIcon name="Clock" size={14} />
                       </Button>
                       <Button
                         size="small"
                         variant={item.status === 'Absent' ? 'danger' : 'outline'}
-                        onClick={() => handleStatusChange(item.student.id, 'Absent')}
+onClick={() => handleStatusChange(item.student.Id, 'Absent')}
                       >
                         <ApperIcon name="X" size={14} />
                       </Button>

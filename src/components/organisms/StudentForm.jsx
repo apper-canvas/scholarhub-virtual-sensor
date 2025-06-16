@@ -5,13 +5,13 @@ import Button from '@/components/atoms/Button';
 import { studentService } from '@/services';
 
 const StudentForm = ({ student = null, onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    firstName: student?.firstName || '',
-    lastName: student?.lastName || '',
-    dateOfBirth: student?.dateOfBirth || '',
+const [formData, setFormData] = useState({
+    firstName: student?.first_name || '',
+    lastName: student?.last_name || '',
+    dateOfBirth: student?.date_of_birth || '',
     grade: student?.grade || '',
-    contactEmail: student?.contactEmail || '',
-    contactPhone: student?.contactPhone || '',
+    contactEmail: student?.contact_email || '',
+    contactPhone: student?.contact_phone || '',
     address: student?.address || '',
     status: student?.status || 'Active'
   });

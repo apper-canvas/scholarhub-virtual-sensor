@@ -84,14 +84,14 @@ const Grades = () => {
     setFilteredGrades(filtered);
   };
 
-  const getStudentName = (studentId) => {
-    const student = students.find(s => s.id === studentId);
-    return student ? `${student.firstName} ${student.lastName}` : 'Unknown Student';
+const getStudentName = (studentId) => {
+    const student = students.find(s => s.Id === parseInt(studentId));
+    return student ? `${student.first_name} ${student.last_name}` : 'Unknown Student';
   };
 
-  const getClassName = (classId) => {
-    const classItem = classes.find(c => c.id === classId);
-    return classItem ? classItem.name : 'Unknown Class';
+const getClassName = (classId) => {
+    const classItem = classes.find(c => c.Id === parseInt(classId));
+    return classItem ? classItem.Name : 'Unknown Class';
   };
 
   const calculatePercentage = (score, maxScore) => {
@@ -105,13 +105,13 @@ const Grades = () => {
     return 'error';
   };
 
-  const handleEdit = (grade) => {
+const handleEdit = (grade) => {
     setSelectedGrade(grade);
     setFormData({
-      studentId: grade.studentId,
-      classId: grade.classId,
+      studentId: grade.student_id,
+      classId: grade.class_id,
       score: grade.score.toString(),
-      maxScore: grade.maxScore,
+      maxScore: grade.max_score,
       type: grade.type,
       comments: grade.comments || ''
     });
@@ -119,8 +119,8 @@ const Grades = () => {
   };
 
   const handleDelete = async (grade) => {
-    const studentName = getStudentName(grade.studentId);
-    const className = getClassName(grade.classId);
+const studentName = getStudentName(grade.student_id);
+    const className = getClassName(grade.class_id);
     
     if (!confirm(`Are you sure you want to delete the ${grade.type} grade for ${studentName} in ${className}?`)) {
       return;
@@ -199,10 +199,10 @@ const Grades = () => {
     }
   };
 
-  const columns = [
+const columns = [
     {
       header: 'Student',
-      accessor: 'studentId',
+      accessor: 'student_id',
       render: (studentId) => (
         <div className="font-medium text-surface-900">
           {getStudentName(studentId)}
@@ -210,8 +210,8 @@ const Grades = () => {
       )
     },
     {
-      header: 'Class',
-      accessor: 'classId',
+header: 'Class',
+      accessor: 'class_id',
       render: (classId) => (
         <div className="text-sm text-surface-700">
           {getClassName(classId)}
@@ -230,16 +230,16 @@ const Grades = () => {
       accessor: 'score',
       render: (score, grade) => (
         <div className="text-sm">
-          <span className="font-medium">{score}</span>
-          <span className="text-surface-500"> / {grade.maxScore}</span>
+<span className="font-medium">{score}</span>
+          <span className="text-surface-500"> / {grade.max_score}</span>
         </div>
       )
     },
     {
       header: 'Percentage',
       accessor: 'percentage',
-      render: (_, grade) => {
-        const percentage = calculatePercentage(grade.score, grade.maxScore);
+render: (_, grade) => {
+        const percentage = calculatePercentage(grade.score, grade.max_score);
         return (
           <Badge variant={getGradeColor(percentage)} size="small">
             {percentage}%
@@ -321,10 +321,10 @@ const Grades = () => {
                   }`}
                   required
                 >
-                  <option value="">Select Student</option>
-                  {students.map(student => (
-                    <option key={student.id} value={student.id}>
-                      {student.firstName} {student.lastName}
+<option value="">Select Student</option>
+                {students.map(student => (
+                  <option key={student.Id} value={student.Id}>
+                    {student.first_name} {student.last_name}
                     </option>
                   ))}
                 </select>
@@ -345,10 +345,10 @@ const Grades = () => {
                   }`}
                   required
                 >
-                  <option value="">Select Class</option>
-                  {classes.map(classItem => (
-                    <option key={classItem.id} value={classItem.id}>
-                      {classItem.name}
+<option value="">Select Class</option>
+                {classes.map(classItem => (
+                  <option key={classItem.Id} value={classItem.Id}>
+                    {classItem.Name}
                     </option>
                   ))}
                 </select>
@@ -480,10 +480,10 @@ const Grades = () => {
                 }`}
                 required
               >
-                <option value="">Select Student</option>
+<option value="">Select Student</option>
                 {students.map(student => (
-                  <option key={student.id} value={student.id}>
-                    {student.firstName} {student.lastName}
+                  <option key={student.Id} value={student.Id}>
+                    {student.first_name} {student.last_name}
                   </option>
                 ))}
               </select>
@@ -504,10 +504,10 @@ const Grades = () => {
                 }`}
                 required
               >
-                <option value="">Select Class</option>
+<option value="">Select Class</option>
                 {classes.map(classItem => (
-                  <option key={classItem.id} value={classItem.id}>
-                    {classItem.name}
+                  <option key={classItem.Id} value={classItem.Id}>
+                    {classItem.Name}
                   </option>
                 ))}
               </select>

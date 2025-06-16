@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import SearchBar from '@/components/molecules/SearchBar';
-import DataTable from '@/components/molecules/DataTable';
-import Modal from '@/components/molecules/Modal';
-import ClassForm from '@/components/organisms/ClassForm';
-import SkeletonLoader from '@/components/atoms/SkeletonLoader';
-import ErrorState from '@/components/molecules/ErrorState';
-import EmptyState from '@/components/molecules/EmptyState';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import ApperIcon from '@/components/ApperIcon';
-import { classService, teacherService } from '@/services';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import SearchBar from "@/components/molecules/SearchBar";
+import DataTable from "@/components/molecules/DataTable";
+import Modal from "@/components/molecules/Modal";
+import ClassForm from "@/components/organisms/ClassForm";
+import SkeletonLoader from "@/components/atoms/SkeletonLoader";
+import ErrorState from "@/components/molecules/ErrorState";
+import EmptyState from "@/components/molecules/EmptyState";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
+import ApperIcon from "@/components/ApperIcon";
+import { classService, teacherService } from "@/services";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
@@ -64,9 +64,9 @@ const Classes = () => {
     setFilteredClasses(filtered);
   };
 
-  const getTeacherName = (teacherId) => {
-    const teacher = teachers.find(t => t.id === teacherId);
-    return teacher ? `${teacher.firstName} ${teacher.lastName}` : 'Unknown Teacher';
+const getTeacherName = (teacherId) => {
+    const teacher = teachers.find(t => t.Id === parseInt(teacherId));
+    return teacher ? `${teacher.first_name} ${teacher.last_name}` : 'Unknown Teacher';
   };
 
   const handleEdit = (classItem) => {
@@ -115,7 +115,7 @@ const Classes = () => {
     },
     {
       header: 'Teacher',
-      accessor: 'teacherId',
+accessor: 'teacher_id',
       render: (teacherId) => (
         <div className="text-sm text-surface-900">
           {getTeacherName(teacherId)}
@@ -133,17 +133,17 @@ const Classes = () => {
       header: 'Room',
       accessor: 'room'
     },
-    {
+{
       header: 'Capacity',
       accessor: 'capacity',
       render: (capacity, classItem) => (
         <div className="text-sm">
-          <span className="font-medium">{classItem.enrolledCount}</span>
+          <span className="font-medium">{classItem.enrolled_count}</span>
           <span className="text-surface-500"> / {capacity}</span>
           <div className="w-full bg-surface-200 rounded-full h-1.5 mt-1">
             <div 
               className="bg-primary h-1.5 rounded-full" 
-              style={{ width: `${(classItem.enrolledCount / capacity) * 100}%` }}
+              style={{ width: `${(classItem.enrolled_count / capacity) * 100}%` }}
             ></div>
           </div>
         </div>

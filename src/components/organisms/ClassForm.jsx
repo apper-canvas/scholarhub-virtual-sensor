@@ -5,10 +5,10 @@ import Button from '@/components/atoms/Button';
 import { classService, teacherService } from '@/services';
 
 const ClassForm = ({ classItem = null, onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    name: classItem?.name || '',
+const [formData, setFormData] = useState({
+    name: classItem?.Name || '',
     subject: classItem?.subject || '',
-    teacherId: classItem?.teacherId || '',
+    teacherId: classItem?.teacher_id || '',
     grade: classItem?.grade || '',
     schedule: classItem?.schedule || '',
     room: classItem?.room || '',
@@ -137,9 +137,9 @@ const ClassForm = ({ classItem = null, onSubmit, onCancel }) => {
             disabled={loadingTeachers}
           >
             <option value="">Select Teacher</option>
-            {teachers.map(teacher => (
-              <option key={teacher.id} value={teacher.id}>
-                {teacher.firstName} {teacher.lastName}
+{teachers.map(teacher => (
+              <option key={teacher.Id} value={teacher.Id}>
+                {teacher.first_name} {teacher.last_name}
               </option>
             ))}
           </select>

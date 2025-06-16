@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import SearchBar from '@/components/molecules/SearchBar';
-import DataTable from '@/components/molecules/DataTable';
-import SkeletonLoader from '@/components/atoms/SkeletonLoader';
-import ErrorState from '@/components/molecules/ErrorState';
-import EmptyState from '@/components/molecules/EmptyState';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import ApperIcon from '@/components/ApperIcon';
-import timetableService from '@/services/api/timetableService';
-import { teacherService, studentService } from '@/services';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import SearchBar from "@/components/molecules/SearchBar";
+import DataTable from "@/components/molecules/DataTable";
+import SkeletonLoader from "@/components/atoms/SkeletonLoader";
+import ErrorState from "@/components/molecules/ErrorState";
+import EmptyState from "@/components/molecules/EmptyState";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
+import ApperIcon from "@/components/ApperIcon";
+import timetableService from "@/services/api/timetableService";
+import { studentService, teacherService } from "@/services";
 
 const Timetable = () => {
   const [schedules, setSchedules] = useState([]);
@@ -59,8 +59,8 @@ const Timetable = () => {
 
     // Apply search filter
     if (searchQuery.trim()) {
-      filtered = filtered.filter(schedule => 
-        schedule.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+filtered = filtered.filter(schedule => 
+        schedule.Name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         schedule.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
         schedule.teacherName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         schedule.room.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -71,8 +71,8 @@ const Timetable = () => {
     // Apply type filter
     switch (filterType) {
       case 'teacher':
-        if (selectedTeacher) {
-          filtered = filtered.filter(schedule => schedule.teacherId === selectedTeacher);
+if (selectedTeacher) {
+          filtered = filtered.filter(schedule => schedule.teacher_id === parseInt(selectedTeacher));
         }
         break;
       case 'student':
@@ -99,7 +99,7 @@ const Timetable = () => {
     {
       header: 'Class',
       accessor: 'name',
-      render: (_, schedule) => (
+render: (_, schedule) => (
         <div className="flex items-center">
           <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
             <ApperIcon 
@@ -109,7 +109,7 @@ const Timetable = () => {
             />
           </div>
           <div>
-            <div className="font-medium text-surface-900">{schedule.name}</div>
+            <div className="font-medium text-surface-900">{schedule.Name}</div>
             <div className="text-sm text-surface-500">{schedule.subject}</div>
           </div>
         </div>
@@ -154,9 +154,9 @@ const Timetable = () => {
     {
       header: 'Enrollment',
       accessor: 'enrollment',
-      render: (_, schedule) => (
+render: (_, schedule) => (
         <div className="text-sm">
-          <span className="font-medium">{schedule.enrolledCount}</span>
+          <span className="font-medium">{schedule.enrolled_count}</span>
           <span className="text-surface-500">/{schedule.capacity}</span>
         </div>
       )
@@ -214,121 +214,99 @@ const Timetable = () => {
 
   return (
     <div className="space-y-6">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-      >
+    <motion.div
+        initial={{
+            opacity: 0,
+            y: -20
+        }}
+        animate={{
+            opacity: 1,
+            y: 0
+        }}
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-surface-900">Timetable</h1>
-          <p className="text-surface-600">
-            View class schedules and identify potential conflicts
-          </p>
+            <h1 className="text-2xl font-bold text-surface-900">Timetable</h1>
+            <p className="text-surface-600">View class schedules and identify potential conflicts
+                          </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant={conflicts.length > 0 ? 'danger' : 'success'} size="small">
-            {conflicts.length} Conflicts
-          </Badge>
+            <Badge variant={conflicts.length > 0 ? "danger" : "success"} size="small">
+                {conflicts.length}Conflicts
+                          </Badge>
         </div>
-      </motion.div>
-
-      {/* Filter Controls */}
-      <div className="flex flex-col lg:flex-row gap-4">
+    </motion.div>
+    {/* Filter Controls */}
+    <div className="flex flex-col lg:flex-row gap-4">
         <SearchBar
-          placeholder="Search by class, teacher, subject, or room..."
-          onSearch={setSearchQuery}
-          className="flex-1"
-        />
-        
+            placeholder="Search by class, teacher, subject, or room..."
+            onSearch={setSearchQuery}
+            className="flex-1" />
         <div className="flex flex-wrap gap-2">
-          <Button
-            variant={filterType === 'all' ? 'primary' : 'outline'}
-            size="small"
-            onClick={() => handleFilterChange('all')}
-          >
-            All Classes
-          </Button>
-          <Button
-            variant={filterType === 'conflicts' ? 'primary' : 'outline'}
-            size="small"
-            onClick={() => handleFilterChange('conflicts')}
-          >
-            <ApperIcon name="AlertTriangle" size={14} className="mr-1" />
-            Conflicts Only
-          </Button>
-          <Button
-            variant={filterType === 'teacher' ? 'primary' : 'outline'}
-            size="small"
-            onClick={() => handleFilterChange('teacher')}
-          >
-            By Teacher
-          </Button>
+            <Button
+                variant={filterType === "all" ? "primary" : "outline"}
+                size="small"
+                onClick={() => handleFilterChange("all")}>All Classes
+                          </Button>
+            <Button
+                variant={filterType === "conflicts" ? "primary" : "outline"}
+                size="small"
+                onClick={() => handleFilterChange("conflicts")}>
+                <ApperIcon name="AlertTriangle" size={14} className="mr-1" />Conflicts Only
+                          </Button>
+            <Button
+                variant={filterType === "teacher" ? "primary" : "outline"}
+                size="small"
+                onClick={() => handleFilterChange("teacher")}>By Teacher
+                          </Button>
         </div>
-      </div>
-
-      {/* Teacher Filter Dropdown */}
-      {filterType === 'teacher' && (
-        <div className="flex items-center gap-4">
-          <label className="text-sm font-medium text-surface-700">Select Teacher:</label>
-          <select
-            value={selectedTeacher}
-            onChange={(e) => setSelectedTeacher(e.target.value)}
-            className="px-3 py-2 border border-surface-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <option value="">All Teachers</option>
-            {teachers.map(teacher => (
-              <option key={teacher.id} value={teacher.id}>
-                {teacher.firstName} {teacher.lastName}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
-      {/* Summary Statistics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-surface-200">
-          <div className="text-2xl font-bold text-surface-900">{schedules.length}</div>
-          <div className="text-sm text-surface-600">Total Classes</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-surface-200">
-          <div className="text-2xl font-bold text-surface-900">{teachers.length}</div>
-          <div className="text-sm text-surface-600">Teachers</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-surface-200">
-          <div className="text-2xl font-bold text-red-600">{conflicts.length}</div>
-          <div className="text-sm text-surface-600">Conflicts</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-surface-200">
-          <div className="text-2xl font-bold text-surface-900">{filteredSchedules.length}</div>
-          <div className="text-sm text-surface-600">Showing</div>
-        </div>
-      </div>
-
-      <DataTable
-        data={filteredSchedules}
-        columns={columns}
-      />
-
-      {/* Conflicts Summary */}
-      {conflicts.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <h3 className="text-lg font-semibold text-red-800 mb-3 flex items-center">
-            <ApperIcon name="AlertTriangle" size={20} className="mr-2" />
-            Schedule Conflicts Detected
-          </h3>
-          <div className="space-y-2">
-            {conflicts.map((conflict, index) => (
-              <div key={index} className="text-sm text-red-700">
-                <strong>{conflict.class1.name}</strong> and <strong>{conflict.class2.name}</strong>
-                <span className="text-red-600"> overlap on </span>
-                <strong>{conflict.overlappingDays.join(', ')}</strong>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
+    {/* Teacher Filter Dropdown */}
+    {filterType === "teacher" && <div className="flex items-center gap-4">
+        <label className="text-sm font-medium text-surface-700">Select Teacher:</label>
+        <select
+            value={selectedTeacher}
+            onChange={e => setSelectedTeacher(e.target.value)}
+            className="px-3 py-2 border border-surface-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            <option value="">All Teachers</option>
+            {teachers.map(teacher => <option key={teacher.Id} value={teacher.Id}>
+                {teacher.first_name} {teacher.last_name}
+            </option>)}
+        </select>
+    </div>}
+    {/* Summary Statistics */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-white p-4 rounded-lg border border-surface-200">
+            <div className="text-2xl font-bold text-surface-900">{schedules.length}</div>
+            <div className="text-sm text-surface-600">Total Classes</div>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-surface-200">
+            <div className="text-2xl font-bold text-surface-900">{teachers.length}</div>
+            <div className="text-sm text-surface-600">Teachers</div>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-surface-200">
+            <div className="text-2xl font-bold text-red-600">{conflicts.length}</div>
+            <div className="text-sm text-surface-600">Conflicts</div>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-surface-200">
+            <div className="text-2xl font-bold text-surface-900">{filteredSchedules.length}</div>
+            <div className="text-sm text-surface-600">Showing</div>
+        </div>
+    </div>
+    <DataTable data={filteredSchedules} columns={columns} />
+    {/* Conflicts Summary */}
+    {conflicts.length > 0 && <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h3 className="text-lg font-semibold text-red-800 mb-3 flex items-center">
+            <ApperIcon name="AlertTriangle" size={20} className="mr-2" />Schedule Conflicts Detected
+                      </h3>
+        <div className="space-y-2">
+            {conflicts.map((conflict, index) => <div key={index} className="text-sm text-red-700">
+                <strong>{conflict.class1.name}</strong>and <strong>{conflict.class2.name}</strong>
+                <span className="text-red-600">overlap on </span>
+                <strong>{conflict.overlappingDays.join(", ")}</strong>
+            </div>)}
+        </div>
+    </div>}
+</div>
   );
 };
 

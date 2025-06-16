@@ -50,10 +50,10 @@ const Students = () => {
       return;
     }
 
-    const filtered = students.filter(student => 
-      `${student.firstName} ${student.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+const filtered = students.filter(student => 
+      `${student.first_name} ${student.last_name}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
       student.grade.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.contactEmail.toLowerCase().includes(searchQuery.toLowerCase())
+      student.contact_email.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredStudents(filtered);
   };
@@ -64,7 +64,7 @@ const Students = () => {
   };
 
   const handleDelete = async (student) => {
-    if (!confirm(`Are you sure you want to delete ${student.firstName} ${student.lastName}?`)) {
+if (!confirm(`Are you sure you want to delete ${student.first_name} ${student.last_name}?`)) {
       return;
     }
 
@@ -97,16 +97,16 @@ const Students = () => {
       accessor: 'name',
       render: (_, student) => (
         <div className="flex items-center">
-          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+<div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
             <span className="text-sm font-medium text-primary">
-              {student.firstName[0]}{student.lastName[0]}
+              {student.first_name[0]}{student.last_name[0]}
             </span>
           </div>
           <div>
             <div className="font-medium text-surface-900">
-              {student.firstName} {student.lastName}
+              {student.first_name} {student.last_name}
             </div>
-            <div className="text-sm text-surface-500">{student.contactEmail}</div>
+            <div className="text-sm text-surface-500">{student.contact_email}</div>
           </div>
         </div>
       )
@@ -132,11 +132,11 @@ const Students = () => {
     },
     {
       header: 'Contact Phone',
-      accessor: 'contactPhone'
+accessor: 'contact_phone'
     },
     {
       header: 'Enrollment Date',
-      accessor: 'enrollmentDate',
+accessor: 'enrollment_date',
       render: (date) => new Date(date).toLocaleDateString()
     }
   ];
