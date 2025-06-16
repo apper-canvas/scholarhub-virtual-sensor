@@ -38,11 +38,10 @@ const [formData, setFormData] = useState({
     }
   };
 
-  const validateForm = () => {
+const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Class name is required';
     if (!formData.subject) newErrors.subject = 'Subject is required';
-    if (!formData.teacherId) newErrors.teacherId = 'Teacher is required';
     if (!formData.grade) newErrors.grade = 'Grade is required';
     if (!formData.room.trim()) newErrors.room = 'Room is required';
     if (!formData.capacity || formData.capacity < 1) newErrors.capacity = 'Capacity must be at least 1';
@@ -119,10 +118,10 @@ const [formData, setFormData] = useState({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-1">
           <label className="block text-sm font-medium text-surface-700">
-            Teacher <span className="text-error ml-1">*</span>
+            Teacher
           </label>
           <select
             name="teacherId"
@@ -133,7 +132,6 @@ const [formData, setFormData] = useState({
                 ? 'border-error focus:ring-error focus:border-error' 
                 : 'border-surface-300 focus:ring-primary focus:border-primary'
             }`}
-            required
             disabled={loadingTeachers}
           >
             <option value="">Select Teacher</option>
